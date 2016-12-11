@@ -1,0 +1,19 @@
+{% extends "AppBundle:layouts:column-two.html.twig" %}
+
+{% block title %}AppBundle:Blog:list{% endblock %}
+
+{% block content %}
+    <h3>Products</h3>
+    <hr>
+    {% for product in products %}
+        <div><h4>Product Category: {{ product.category.name }}</h4></div>
+        <div class="post-container">{{ product.name }}</div>
+    {% endfor %}
+{% endblock content %}
+
+{% block sideContent %}
+    <h3>Popular</h3>
+    <hr>
+    Cras eu ullamcorper eros, eget bibendum arcu.<br><br>
+    Fusce semper eros libero, sit amet placerat risus maximus mattis.<br><br>
+{% endblock sideContent %}
