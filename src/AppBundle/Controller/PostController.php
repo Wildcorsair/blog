@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
-use AppBundle\Entity\Category;
+use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -120,6 +120,9 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
+            $mailer = $this->get('app.mailer');
+            $mailer->sendMail('dark-edge@mail.ru', 'Vladimir', 'New post', 'The New post was created!');
 
             return $this->redirectToRoute('postsList');
         }
